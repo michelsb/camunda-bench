@@ -1,0 +1,92 @@
+server:
+  port: 8091
+
+spring:
+  application:
+    name: camundapostgres
+
+  profiles:
+    active: local
+
+#  h2:
+#    console:
+#      enabled: true
+#      path: /h2
+#
+#      settings:
+#        web-allow-others: true
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    #database-platform: org.hibernate.dialect.H2Dialect
+
+  datasource:
+     type: com.zaxxer.hikari.HikariDataSource
+     url: jdbc:postgresql://localhost:5432/camunda7db
+     username: postgres
+     password: 112505
+
+     hikari:
+       jdbc-url: jdbc:postgresql://localhost:5432/camunda7db
+       username: postgres
+       password: 112505
+       driver-class-name: org.postgresql.Driver
+       pool-name: CAMUNDA-HIKARI-POOL
+       idle-timeout: 3000
+       minimum-idle: 30
+       maximum-pool-size: 10
+       connection-timeout: 2000
+       connection-test-query: select 1
+       transaction-isolation: TRANSACTION_READ_COMMITTED
+
+#  datasource:
+#    type: com.zaxxer.hikari.HikariDataSource
+#    url: jdbc:h2:mem:gtt-develop
+#    username: sa
+#    password:
+#    driver-class-name: org.h2.Driver
+#
+#    hikari:
+#      jdbc-url: jdbc:h2:mem:gtt-develop
+#      username: sa
+#      password:
+#      driver-class-name: org.h2.Driver
+#      pool-name: CAMUNDA-HIKARI-POOL
+#      idle-timeout: 3000
+#      minimum-idle: 30
+#      maximum-pool-size: 10
+#      connection-timeout: 2000
+#      connection-test-query: select 1
+#      transaction-isolation: TRANSACTION_READ_COMMITTED
+
+camunda:
+  bpm:
+    enabled: true
+
+    admin-user:
+      id: demo
+      password: demo
+      email: ufo@andromeda.com
+      first-name: Andromeda
+      last-name: Galaxy
+
+    database:
+      schema-update: true
+
+    filter:
+      create: All
+
+    authorization:
+      enabled: true
+
+    history-level: full
+
+    auto-deployment-enabled: true
+
+    default-number-of-retries: 3
+
+    job-execution:
+      enabled: true
+
+    webapp:
+      application-path: /camundapostgres
